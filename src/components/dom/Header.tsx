@@ -1,10 +1,21 @@
 import Head from "next/head";
 
-const Header = () => {
+
+type HeaderProps = {
+  title?: string;
+  /**
+   * Relative URL to cover image.
+   * Should be inside `/public/` folder.
+   */
+  coverImage?: string;
+};
+
+const Header = ({ title, coverImage }: HeaderProps) => {
+  title = "Ricky wuz here 🤓"
   return (
     <>
       <Head>
-        <title>Ricky wuz here</title>
+        <title>{title}</title>
       </Head>
     </>
   );
