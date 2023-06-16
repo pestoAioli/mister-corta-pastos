@@ -1,14 +1,19 @@
 import { Lights } from "@/components/canvas/Lights";
-import { KeyboardControls } from "@react-three/drei";
+import { KeyboardControls, useTexture } from "@react-three/drei";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
 import { Perf } from "r3f-perf";
+import { useRef } from "react";
 import * as THREE from 'three';
+import { TextureLoader } from "three";
 
 const MisterPastos = dynamic(() => import("@/components/canvas/MisterPastos"), {
   ssr: false,
 })
-
+const Ball = dynamic(() => import("@/components/canvas/Ball"), {
+  ssr: false,
+})
 const EffectOne = dynamic(() => import("@/components/canvas/EffectOne"), {
   ssr: false,
 });
@@ -31,7 +36,24 @@ const DOM = () => {
 
 // Canvas/R3F components here
 const R3F = () => {
-
+  const hereHeIs = useRef<any>();
+  const boyWhereAreYuo = (position) => {
+    const adjustCoords = { x: 0, z: 0 };
+    adjustCoords.x = Math.floor(position.x)
+    adjustCoords.z = Math.floor(position.z)
+    hereHeIs.current = adjustCoords;
+  }
+  useFrame((state) => {
+    // console.log(state.scene.children)
+    state.scene.children.map((x, i) => {
+      if (x.userData.x === hereHeIs.current.x && x.userData.z === hereHeIs.current.z) {
+        console.log(x.userData, hereHeIs.current, 'EUREKAAAAAAAAAAAAAAAAAAAA')
+        state.scene.children[i].removeFromParent();
+      }
+    })
+  })
+  const { scene } = useThree();
+  console.log(scene)
   return (
     <>
       <KeyboardControls map={[
@@ -44,11 +66,11 @@ const R3F = () => {
         <color attach="background" args={[0, 0, 0]} />
         <fog attach="fog" args={['black', 90, 150]} />
         {arrayToMap.map((x, i) => (
-          < Grass position={[i % 24 - 11.7, x, Math.floor(i / 24) - 12]} key={i * Math.PI} />
+          < Grass userData={{ x: Math.floor(i % 24 - 11.7), z: (Math.floor(i / 24) - 12) }} position={[i % 24 - 11.7, x, Math.floor(i / 24) - 12]} key={i * Math.PI} />
         ))}
         <Physics>
           <Lights />
-          <MisterPastos />
+          <MisterPastos func={boyWhereAreYuo} />
           <RigidBody type="fixed">
             <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, 0]} receiveShadow />
             <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, -24]} receiveShadow />
@@ -81,40 +103,7 @@ const R3F = () => {
             />
           </RigidBody>
           <RigidBody>
-            <mesh
-              position={[0, 0, -1]}
-              geometry={bumperGeometry}
-              material={wallMaterial}
-              receiveShadow
-              castShadow
-            />
-          </RigidBody>
-          <RigidBody>
-            <mesh
-              position={[-0.5, 0, -2]}
-              geometry={bumperGeometry}
-              material={wallMaterial}
-              receiveShadow
-              castShadow
-            />
-          </RigidBody>
-          <RigidBody>
-            <mesh
-              position={[2, 0, -4]}
-              geometry={bumperGeometry}
-              material={wallMaterial}
-              receiveShadow
-              castShadow
-            />
-          </RigidBody>
-          <RigidBody>
-            <mesh
-              position={[-1, 0, -8]}
-              geometry={bumperGeometry}
-              material={wallMaterial}
-              receiveShadow
-              castShadow
-            />
+            <Ball position={[0, 2, -5]} />
           </RigidBody>
         </Physics>
         <EffectOne />
@@ -137,7 +126,7 @@ export default function Page() {
 export async function getStaticProps() {
   return {
     props: {
-      title: "Welcome!",
+      title: "Ricky <3's yuo :D",
     },
   };
 }

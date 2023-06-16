@@ -29,10 +29,11 @@ type GLTFResult = GLTF & {
   };
   animations: GLTFAction[];
 };
-export default function MisterPastos(props: JSX.IntrinsicElements["group"], updatedCameraPosition: any) {
+export default function MisterPastos(props: any) {
   const group = useRef<THREE.Group>(null);
   const boyBody = useRef<RapierRigidBody>(null);
   const isMoving = useRef<boolean>(false);
+  const whereHeAt = useRef<any>(null);
   const { nodes, materials, animations } = useGLTF(
     "/lowpoly1_2.glb"
   ) as unknown as GLTFResult;
@@ -86,6 +87,7 @@ export default function MisterPastos(props: JSX.IntrinsicElements["group"], upda
     const bodyPosition = boyBody.current?.translation() as any;
     const cameraPosition = new THREE.Vector3();
     if (bodyPosition) cameraPosition.copy(bodyPosition);
+    if (bodyPosition) props.func(bodyPosition);
     cameraPosition.z += 12.12;
     cameraPosition.y += 5.55;
     cameraPosition.x += 1.55;
@@ -95,11 +97,10 @@ export default function MisterPastos(props: JSX.IntrinsicElements["group"], upda
     smoothedCameraPosition.lerp(cameraPosition, 0.1)
     smoothedCameraTarget.lerp(cameraTarget, 0.1)
     state.camera.position.copy(smoothedCameraPosition);
-    updatedCameraPosition = state.camera.position;
     state.camera.lookAt(smoothedCameraTarget);
   })
   return (
-    <RigidBody ref={boyBody} position={[0, 12, 0]} rotation={[0, 3.1415926, 0]} linearDamping={1}>
+    <RigidBody name="Grass" ref={boyBody} position={[0, 12, 0]} rotation={[0, 3.1415926, 0]} linearDamping={1}>
       <group ref={group} {...props} dispose={null}>
         <group name="Model">
           <group name="Armature">
