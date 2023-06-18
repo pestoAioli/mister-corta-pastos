@@ -35,7 +35,7 @@ export default function Grass({ options = { bW: 0.02, bH: 0.3, joints: 5 }, widt
   const materialRef = useRef<any>()
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, ["/blade_diffuse.jpg", "/blade_alpha.jpg"])
   const attributeData = useMemo(() => getAttributeData(instances, width), [instances, width])
-  const baseGeom = useMemo(() => new THREE.PlaneBufferGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
+  const baseGeom = useMemo(() => new THREE.PlaneGeometry(bW, bH, 1, joints).translate(0, bH / 2, 0), [options])
   useFrame((state) => {
     materialRef.current.uniforms.time.value = state.clock.elapsedTime / 4
     // console.log(state.raycaster)

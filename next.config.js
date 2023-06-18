@@ -31,12 +31,12 @@ module.exports = plugins(
   [
     // Setup Offline Support
     // This requires the `public` folder with a `manifest.json`
-    [
-      withOffline,
-      {
-        // Optional offline config
-      },
-    ],
+    // [
+    //   withOffline,
+    //   {
+    //     // Optional offline config
+    //   },
+    // ],
     withBundleAnalyzer,
   ],
   nextConfig

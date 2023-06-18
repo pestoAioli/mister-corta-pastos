@@ -1,14 +1,14 @@
 import { Lights } from "@/components/canvas/Lights";
 import Loading from "@/components/canvas/Loading";
 import OverlayTwo from "@/components/canvas/SecondOverlay";
-import { KeyboardControls, useProgress, useTexture } from "@react-three/drei";
+import { Html, KeyboardControls, useProgress, useTexture } from "@react-three/drei";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
 import { Perf } from "r3f-perf";
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
-import { TextureLoader } from "three";
+import useWindowSize from '@/helpers/useWindowSize';
 
 const MisterPastos = dynamic(() => import("@/components/canvas/MisterPastos"), {
   ssr: false,
@@ -33,13 +33,14 @@ const wallGeometry = new THREE.BoxGeometry(0.3, 1.2, 48);
 const wallGeometryTwo = new THREE.BoxGeometry(25, 1.2, 0.3);
 // DOM elements here
 const DOM = () => {
+
   return <>
   </>;
 };
 
 // Canvas/R3F components here
 const R3F = () => {
-
+  const size = useWindowSize();
   const [isLoaded, setIsLoaded] = useState(false);
   const hereHeIs = useRef<any>({ x: 12, z: -12 });
   const boyWhereAreYuo = (position) => {
@@ -61,7 +62,26 @@ const R3F = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      {!isLoaded ? <OverlayTwo onEnterClick={() => setIsLoaded(true)} /> : null}
+      {!isLoaded ?
+        <Html center>
+          <div style={{
+            width: size.width ? size.width : '100%',
+            height: size.height ? size.height : '100%',
+            display: 'flex',
+            backgroundColor: 'black',
+            justifyContent: 'space-around',
+            alignItems: 'center'
+          }}>
+            <h2 style={{
+              border: '3px solid white',
+              padding: '12px 24px',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+              onClick={() => setIsLoaded(true)}>enter</h2>
+          </div>
+        </Html>
+        : null}
       <KeyboardControls map={[
         { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
         { name: 'backward', keys: ['ArrowDown', 'KeyS'] },

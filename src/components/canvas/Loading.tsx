@@ -4,8 +4,8 @@ import fragmentShader from '@/components/canvas/ShaderExample/shaders/overlay.fr
 import * as THREE from 'three';
 import { extend } from "@react-three/fiber";
 
-export const OverlayMaterial = shaderMaterial(
-  { uAlpha: 1.0 },
+const OverlayMaterial = shaderMaterial(
+  {},
   vertexShader,
   fragmentShader,
   (self: any) => {
@@ -25,7 +25,7 @@ export default function Loading() {
       <mesh>
         <planeGeometry args={[2, 2]} />
         {/*@ts-ignore*/}
-        <overlayMaterial transparent />
+        <overlayMaterial />
       </mesh>
     </>
   )
