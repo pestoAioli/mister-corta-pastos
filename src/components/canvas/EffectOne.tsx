@@ -4,7 +4,6 @@ export default function EffectOne() {
   return (
     <>
       <EffectComposer>
-
         <Bloom
           luminanceThreshold={0.4}
           luminanceSmoothing={0.9}

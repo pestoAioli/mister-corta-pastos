@@ -3,10 +3,11 @@ import vertexShader from './ShaderExample/shaders/grass.vert';
 import fragmentShader from './ShaderExample/shaders/grass.frag';
 import { shaderMaterial } from '@react-three/drei';
 import { extend } from '@react-three/fiber';
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, Suspense, useEffect } from "react";
 
 import { useFrame, useLoader } from "@react-three/fiber";
 import { Geometry } from "three/examples/jsm/deprecated/Geometry";
+import Loading from './Loading';
 //These have been taken from "Realistic real-time grass rendering" by Eddie Lee, 2010
 
 const GrassMaterial = shaderMaterial(
@@ -29,7 +30,7 @@ const GrassMaterial = shaderMaterial(
 
 extend({ GrassMaterial });
 
-export default function Grass({ options = { bW: 0.02, bH: 0.3, joints: 5 }, width = 1.2, instances = 444, ...props }) {
+export default function Grass({ options = { bW: 0.02, bH: 0.3, joints: 5 }, width = 1.1, instances = 222, ...props }) {
   const { bW, bH, joints } = options
   const materialRef = useRef<any>()
   const [texture, alphaMap] = useLoader(THREE.TextureLoader, ["/blade_diffuse.jpg", "/blade_alpha.jpg"])
@@ -40,19 +41,21 @@ export default function Grass({ options = { bW: 0.02, bH: 0.3, joints: 5 }, widt
     // console.log(state.raycaster)
   })
   return (
-    <group {...props}>
-      <mesh>
-        <instancedBufferGeometry index={baseGeom.index} attributes-position={baseGeom.attributes.position} attributes-uv={baseGeom.attributes.uv}>
-          <instancedBufferAttribute attach="attributes-offset" args={[new Float32Array(attributeData.offsets), 3]} />
-          <instancedBufferAttribute attach="attributes-orientation" args={[new Float32Array(attributeData.orientations), 3]} />
-          <instancedBufferAttribute attach="attributes-stretch" args={[new Float32Array(attributeData.stretches), 1]} />
-          <instancedBufferAttribute attach="attributes-halfRootAngleSin" args={[new Float32Array(attributeData.halfRootAngleSin), 1]} />
-          <instancedBufferAttribute attach="attributes-halfRootAngleCos" args={[new Float32Array(attributeData.halfRootAngleCos), 1]} />
-        </instancedBufferGeometry>
-        {/*@ts-ignore*/}
-        <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
-      </mesh>
-    </group>
+    <Suspense fallback={null}>
+      <group {...props}>
+        <mesh>
+          <instancedBufferGeometry index={baseGeom.index} attributes-position={baseGeom.attributes.position} attributes-uv={baseGeom.attributes.uv}>
+            <instancedBufferAttribute attach="attributes-offset" args={[new Float32Array(attributeData.offsets), 3]} />
+            <instancedBufferAttribute attach="attributes-orientation" args={[new Float32Array(attributeData.orientations), 3]} />
+            <instancedBufferAttribute attach="attributes-stretch" args={[new Float32Array(attributeData.stretches), 1]} />
+            <instancedBufferAttribute attach="attributes-halfRootAngleSin" args={[new Float32Array(attributeData.halfRootAngleSin), 1]} />
+            <instancedBufferAttribute attach="attributes-halfRootAngleCos" args={[new Float32Array(attributeData.halfRootAngleCos), 1]} />
+          </instancedBufferGeometry>
+          {/*@ts-ignore*/}
+          <grassMaterial ref={materialRef} map={texture} alphaMap={alphaMap} toneMapped={false} />
+        </mesh>
+      </group>
+    </Suspense>
   )
 }
 

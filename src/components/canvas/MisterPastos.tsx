@@ -1,5 +1,5 @@
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 //@ts-ignore
 import { useKeyboardControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -8,6 +8,7 @@ import { GLTF } from "three-stdlib";
 //@ts-ignore
 import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
+import Loading from "./Loading";
 
 type ActionName = "0StillPose" | "1Walking";
 
@@ -100,26 +101,28 @@ export default function MisterPastos(props: any) {
     state.camera.lookAt(smoothedCameraTarget);
   })
   return (
-    <RigidBody name="Grass" ref={boyBody} position={[0, 12, 0]} rotation={[0, 3.1415926, 0]} linearDamping={1}>
-      <group ref={group} {...props} dispose={null}>
-        <group name="Model">
-          <group name="Armature">
-            <primitive object={nodes.Root} />
-            <primitive object={nodes.IKLegPoleL} />
-            <primitive object={nodes.IkTargetL} />
-            <primitive object={nodes.IKLegPoleR} />
-            <primitive object={nodes.IkTargetR} />
-            <skinnedMesh
-              name="Cube"
-              geometry={nodes.Cube.geometry}
-              material={materials.Material}
-              skeleton={nodes.Cube.skeleton}
-              castShadow
-            />
+    <Suspense fallback={null}>
+      <RigidBody name="Grass" ref={boyBody} position={[0, 12, 24]} rotation={[0, 3.1415926, 0]} linearDamping={1}>
+        <group ref={group} {...props} dispose={null}>
+          <group name="Model">
+            <group name="Armature">
+              <primitive object={nodes.Root} />
+              <primitive object={nodes.IKLegPoleL} />
+              <primitive object={nodes.IkTargetL} />
+              <primitive object={nodes.IKLegPoleR} />
+              <primitive object={nodes.IkTargetR} />
+              <skinnedMesh
+                name="Cube"
+                geometry={nodes.Cube.geometry}
+                material={materials.Material}
+                skeleton={nodes.Cube.skeleton}
+                castShadow
+              />
+            </group>
           </group>
         </group>
-      </group>
-    </RigidBody>
+      </RigidBody>
+    </Suspense>
   );
 }
 

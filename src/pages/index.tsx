@@ -1,10 +1,12 @@
 import { Lights } from "@/components/canvas/Lights";
-import { KeyboardControls, useTexture } from "@react-three/drei";
+import Loading from "@/components/canvas/Loading";
+import OverlayTwo from "@/components/canvas/SecondOverlay";
+import { KeyboardControls, useProgress, useTexture } from "@react-three/drei";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
 import { Perf } from "r3f-perf";
-import { useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
 import { TextureLoader } from "three";
 
@@ -25,18 +27,21 @@ const Grass = dynamic(() => import("@/components/canvas/Grass"), {
 const arrayToMap = Array(576).fill(0);
 const floor1Material = new THREE.MeshStandardMaterial({ color: 'limegreen' })
 const wallMaterial = new THREE.MeshStandardMaterial({ color: 'skyblue' })
-const boxGeometry = new THREE.BoxGeometry(24.2, 0.2, 24);
+const boxGeometry = new THREE.BoxGeometry(25, 0.2, 24);
 const bumperGeometry = new THREE.IcosahedronGeometry(0.8, 4);
 const wallGeometry = new THREE.BoxGeometry(0.3, 1.2, 48);
-const wallGeometryTwo = new THREE.BoxGeometry(24.2, 1.2, 0.3);
+const wallGeometryTwo = new THREE.BoxGeometry(25, 1.2, 0.3);
 // DOM elements here
 const DOM = () => {
-  return <></>;
+  return <>
+  </>;
 };
 
 // Canvas/R3F components here
 const R3F = () => {
-  const hereHeIs = useRef<any>();
+
+  const [isLoaded, setIsLoaded] = useState(false);
+  const hereHeIs = useRef<any>({ x: 12, z: -12 });
   const boyWhereAreYuo = (position) => {
     const adjustCoords = { x: 0, z: 0 };
     adjustCoords.x = Math.floor(position.x)
@@ -46,16 +51,17 @@ const R3F = () => {
   useFrame((state) => {
     // console.log(state.scene.children)
     state.scene.children.map((x, i) => {
+      //TODO: maybe make it chek the hereHeIs z - 1 so its like under the mower but have to account for when hes sideways
       if (x.userData.x === hereHeIs.current.x && x.userData.z === hereHeIs.current.z) {
         console.log(x.userData, hereHeIs.current, 'EUREKAAAAAAAAAAAAAAAAAAAA')
         state.scene.children[i].removeFromParent();
       }
     })
   })
-  const { scene } = useThree();
-  console.log(scene)
+
   return (
-    <>
+    <Suspense fallback={<Loading />}>
+      {!isLoaded ? <OverlayTwo onEnterClick={() => setIsLoaded(true)} /> : null}
       <KeyboardControls map={[
         { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
         { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
@@ -73,44 +79,43 @@ const R3F = () => {
           <MisterPastos func={boyWhereAreYuo} />
           <RigidBody type="fixed">
             <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, 0]} receiveShadow />
-            <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, -24]} receiveShadow />
+            <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, 24]} receiveShadow />
           </RigidBody>
           {/* paredes */}
           <RigidBody type="fixed" restitution={0.2} friction={0}>
             <mesh
-              position={[12, 0.6, -12.1]}
+              position={[12.3, 0.6, 12.1]}
               geometry={wallGeometry}
               material={wallMaterial}
               castShadow
             />
             <mesh
-              position={[-11.86, 0.6, -12.1]}
+              position={[-12.5, 0.6, 12.1]}
               geometry={wallGeometry}
               material={wallMaterial}
               receiveShadow
             />
             <mesh
-              position={[0, 0.6, 11.86]}
+              position={[0, 0.6, 35.86]}
               geometry={wallGeometryTwo}
               material={wallMaterial}
               receiveShadow
             />
             <mesh
-              position={[0, 0.6, -36]}
+              position={[0, 0.6, -12]}
               geometry={wallGeometryTwo}
               material={wallMaterial}
               receiveShadow
             />
           </RigidBody>
           <RigidBody>
-            <Ball position={[0, 2, -5]} />
+            <Ball position={[0, 2, 32]} />
           </RigidBody>
         </Physics>
         <EffectOne />
         <Perf />
       </KeyboardControls>
-
-    </>
+    </Suspense>
   );
 };
 
