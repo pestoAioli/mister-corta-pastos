@@ -1,8 +1,7 @@
 import { Lights } from "@/components/canvas/Lights";
 import Loading from "@/components/canvas/Loading";
-import OverlayTwo from "@/components/canvas/SecondOverlay";
-import { Html, KeyboardControls, useProgress, useTexture } from "@react-three/drei";
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Html, KeyboardControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
 import { Perf } from "r3f-perf";
