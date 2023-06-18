@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
 import { Perf } from "r3f-perf";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import * as THREE from 'three';
 import useWindowSize from '@/helpers/useWindowSize';
 
@@ -32,7 +32,6 @@ const wallGeometry = new THREE.BoxGeometry(0.3, 1.2, 48);
 const wallGeometryTwo = new THREE.BoxGeometry(25, 1.2, 0.3);
 // DOM elements here
 const DOM = () => {
-
   return <>
   </>;
 };
