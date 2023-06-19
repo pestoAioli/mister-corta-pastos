@@ -39,7 +39,9 @@ const DOM = () => {
         After a year of going at it alone, I decided I needed to see what it was like to write code in a collaborative setting, assuming I would love it even more and learn in a way that was more appropriate for me. After asking around, and some convincing from Nico, I enrolled in Codeworks, a Bootcamp that seemed like an environment where I would be around other motivated individuals with interesting backgrounds, and I was right in both assumptions.
         We spent 12 hours a day, 6 days a week together in a room learning about algorithms, frameworks, networking, databases, and sharing our thoughts with one another.
         It was incredibly enriching and I made some of the greatest friends I will ever have during that time.
+        {/*eslint-disable-next-line react/no-unescaped-entities*/}
         Since then, I was hired as a Full Stack Engineer at Retrium, and moved back to San Francisco to be close to my friends. I was laid off from Retrium due to a "reduction in force" aka the economy, and I'm now seeking a new role.
+        {/*eslint-disable-next-line react/no-unescaped-entities*/}
         I'm happy to answer any questions or provide (glowing) references from my previous job as an Engineer upon request. Thanks for reading this far, and I hope you were able to gain further insight into who I am.</p>
     </div>
   );
