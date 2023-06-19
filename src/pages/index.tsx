@@ -115,14 +115,16 @@ const R3F = () => {
           <Lights movedOn={moveOn} />
           <MisterPastos func={boyWhereAreYuo} />
           {grassLooksNice && !moveOn ?
-            <RigidBody>
-              <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
-                onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
-                Learn more :D
-                <meshStandardMaterial color="orange" />
-              </Text3D>
-            </RigidBody>
+            <Suspense fallback={null}>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
+                  Learn more :D
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+            </Suspense>
             : null}
           {!moveOn ?
             <RigidBody type="fixed">
@@ -138,14 +140,16 @@ const R3F = () => {
             : null}
           {/* paredes */}
           {moveOn ?
-            <RigidBody>
-              <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
-                onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                onClick={() => window.open("https://ezequiel4.online/RRMC4.pdf", "_blank")} position={[-1, -43, 0]}>
-                My resume
-                <meshStandardMaterial color="orange" />
-              </Text3D>
-            </RigidBody>
+            <Suspense fallback={null}>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => window.open("https://ezequiel4.online/RRMC4.pdf", "_blank")} position={[-1, -43, 0]}>
+                  My resume
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+            </Suspense>
             : null}
           {!moveOn ?
             <RigidBody type="fixed" restitution={0.2} friction={0.5}>
