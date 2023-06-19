@@ -1,6 +1,6 @@
 import { Lights } from "@/components/canvas/Lights";
 import Loading from "@/components/canvas/Loading";
-import { Html, KeyboardControls, Text } from "@react-three/drei";
+import { Html, KeyboardControls, Stars, Text, Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import dynamic from "next/dynamic";
@@ -24,8 +24,8 @@ const Grass = dynamic(() => import("@/components/canvas/Grass"), {
 })
 
 const arrayToMap = Array(576).fill(0);
-const floor1Material = new THREE.MeshStandardMaterial({ color: 'darkseagreen' })
-const wallMaterial = new THREE.MeshStandardMaterial({ color: 'darkslategray' })
+const floor1Material = new THREE.MeshStandardMaterial({ color: 'mediumseagreen' })
+const wallMaterial = new THREE.MeshStandardMaterial({ color: 'palegreen' })
 const boxGeometry = new THREE.BoxGeometry(25, 0.2, 24);
 const bumperGeometry = new THREE.IcosahedronGeometry(0.8, 4);
 const wallGeometry = new THREE.BoxGeometry(0.3, 2.2, 47.6);
@@ -39,10 +39,17 @@ const DOM = () => {
 // Canvas/R3F components here
 const R3F = () => {
   const size = useWindowSize();
-  const [welcomeInfo, setWelcomeInfo] = useState('');
+
+  const [hovered, setHovered] = useState(false)
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? 'pointer' : 'auto'
+  }, [hovered])
+
   const [isLoaded, setIsLoaded] = useState(false);
   const cutGrass = useRef(0);
   const [grassLooksNice, setGrassLooksNice] = useState(false);
+  const [moveOn, setMoveOn] = useState(false);
   const hereHeIs = useRef<any>({ x: 12, z: -12 });
   const boyWhereAreYuo = (position) => {
     const adjustCoords = { x: 0, z: 0 };
@@ -50,11 +57,11 @@ const R3F = () => {
     adjustCoords.z = Math.floor(position.z)
     hereHeIs.current = adjustCoords;
   }
-  const information = "Hi! Welcome to Ricardo Rivera's portfolio. Use WASD(or your keyboard equivalent) to move around, and if you wish to learn more about his experience as a human, artist, and software engineer, please mow at least 20% of the lawn. Thank you for visiting! Have a wonderful day!"
+  const information = "Hi! Welcome to my portfolio. My name is Ricardo, but my friends call me Ricky. Use WASD(or your keyboard equivalent) to move around, and if you wish to learn more about my experience as a human, artist, and software engineer, please mow at least 20% of the lawn. Thank you for visiting! Have a wonderful day!"
   useFrame((state) => {
     // console.log(state.scene.children)
     state.scene.children.map((x, i) => {
-      if (grassLooksNice && Object.values(state.scene.children[i].userData).length) {
+      if (moveOn && Object.values(state.scene.children[i].userData).length) {
         state.scene.children[i].removeFromParent();
       }
       //TODO: maybe make it chek the hereHeIs z - 1 so its like under the mower but have to account for when hes sideways
@@ -89,7 +96,8 @@ const R3F = () => {
           </div>
         </Html>
         : null}
-      <Text position={[6, 6, 16]} fontSize={0.8} anchorX="right" maxWidth={15}>{information}</Text>
+      <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
       <KeyboardControls map={[
         { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
         { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
@@ -100,25 +108,46 @@ const R3F = () => {
         <color attach="background" args={[0, 0, 0]} />
         <fog attach="fog" args={['black', 90, 150]} />
         {arrayToMap.map((x, i) => (
-          < Grass userData={{ x: Math.floor(i % 24 - 11.7), z: (Math.floor(i / 24) - 10) }} position={[i % 24 - 11.7, x, Math.floor(i / 24) - 10]} key={i * Math.PI} />
+          < Grass userData={{ x: Math.floor(i % 24 - 11.7), z: (Math.floor(i / 24) - 10) }}
+            position={[i % 24 - 11.7, x, Math.floor(i / 24) - 10]} key={i * Math.PI} />
         ))}
         <Physics gravity={[0, -12.81, 0]}>
-          <Lights />
+          <Lights movedOn={moveOn} />
           <MisterPastos func={boyWhereAreYuo} />
-          {!grassLooksNice ?
+          {grassLooksNice && !moveOn ?
+            <RigidBody>
+              <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
+                onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
+                Learn more :D
+                <meshStandardMaterial color="orange" />
+              </Text3D>
+            </RigidBody>
+            : null}
+          {!moveOn ?
             <RigidBody type="fixed">
               <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, 0]} receiveShadow />
               <mesh geometry={boxGeometry} material={floor1Material} position={[0, - 0.12, 24]} receiveShadow />
             </RigidBody>
             : null}
-          {grassLooksNice ?
+          {moveOn ?
             <RigidBody type="fixed">
               <mesh geometry={boxGeometry} material={floor1Material} position={[0, -44, 0]} receiveShadow />
               <mesh geometry={boxGeometry} material={floor1Material} position={[0, -44, 24]} receiveShadow />
             </RigidBody>
             : null}
           {/* paredes */}
-          {!grassLooksNice ?
+          {moveOn ?
+            <RigidBody>
+              <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                onClick={() => window.open("https://ezequiel4.online/RRMC4.pdf", "_blank")} position={[-1, -43, 0]}>
+                My resume
+                <meshStandardMaterial color="orange" />
+              </Text3D>
+            </RigidBody>
+            : null}
+          {!moveOn ?
             <RigidBody type="fixed" restitution={0.2} friction={0.5}>
               <mesh
                 position={[12.3, 0.6, 12.1]}
@@ -146,7 +175,7 @@ const R3F = () => {
               />
             </RigidBody>
             : null}
-          {grassLooksNice ?
+          {moveOn ?
             <RigidBody type="fixed" restitution={0.2} friction={0.5}>
               <mesh
                 position={[12.3, -43.4, 12.1]}
