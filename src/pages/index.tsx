@@ -38,14 +38,13 @@ const DOM = () => {
 
 // Canvas/R3F components here
 const R3F = () => {
+
   const size = useWindowSize();
-
   const [hovered, setHovered] = useState(false)
-
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
   }, [hovered])
-
+  const [summary, setSummary] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const cutGrass = useRef(0);
   const [grassLooksNice, setGrassLooksNice] = useState(false);
@@ -58,6 +57,7 @@ const R3F = () => {
     hereHeIs.current = adjustCoords;
   }
   const information = "Hi! Welcome to my portfolio. My name is Ricardo, but my friends call me Ricky. Use WASD(or your keyboard equivalent) to move around, and if you wish to learn more about my experience as a human, artist, and software engineer, please mow at least 20% of the lawn. Thank you for visiting! Have a wonderful day!"
+
   useFrame((state) => {
     // console.log(state.scene.children)
     state.scene.children.map((x, i) => {
@@ -145,7 +145,15 @@ const R3F = () => {
                 <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => window.open("https://ezequiel4.online/RRMC4.pdf", "_blank")} position={[-1, -43, 0]}>
-                  My resume
+                  resume
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => window.open("https://ezequiel4.online/two", "_blank")} position={[-3, -43, 10]}>
+                  about me
                   <meshStandardMaterial color="orange" />
                 </Text3D>
               </RigidBody>
