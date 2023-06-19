@@ -1,6 +1,8 @@
 import { Lights } from "@/components/canvas/Lights";
 import useWindowSize from "@/helpers/useWindowSize";
 import { Box, OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
 const DOM = () => {
   const size = useWindowSize();
@@ -49,11 +51,17 @@ const DOM = () => {
 
 // Canvas/R3F components here
 const R3F = () => {
+  const mesh = useRef(null);
+  useFrame(() =>
+    mesh.current
+      ? mesh.current.rotation.y += 0.01
+      : null
+  );
   return (
     <>
       <OrbitControls />
       <Lights movedOn={false} />
-      <mesh position={[0, -2, 0]} castShadow>
+      <mesh ref={mesh} position={[0, -2, 0]} castShadow>
         <boxGeometry />
         <meshStandardMaterial color="darksalmon" />
       </mesh>
