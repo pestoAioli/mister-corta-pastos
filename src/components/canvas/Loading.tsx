@@ -21,7 +21,7 @@ export default function Loading() {
     <>
       <Html style={{
         color: 'white'
-      }} center>{progress.progress} % loaded</Html>
+      }} center>{Math.floor(progress.progress)} % loaded</Html>
       <mesh>
         <planeGeometry args={[2, 2]} />
         {/*@ts-ignore*/}

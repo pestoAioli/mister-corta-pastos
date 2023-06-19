@@ -49,7 +49,7 @@ export default function MisterPastos(props: any) {
     const impulse = { x: 0, y: 0, z: 0 }
     // const torque = { x: 0, y: 0, z: 0 }
 
-    const impulseStrength = 333 * delta
+    const impulseStrength = 300 * delta
     if (isMoving.current === true) {
       actions["1Walking"]?.play();
     } else {
@@ -91,7 +91,6 @@ export default function MisterPastos(props: any) {
     if (bodyPosition) props.func(bodyPosition);
     cameraPosition.z += 12.12;
     cameraPosition.y += 5.55;
-    cameraPosition.x += 1.55;
     const cameraTarget = new THREE.Vector3();
     if (bodyPosition) cameraTarget.copy(bodyPosition);
     cameraTarget.y += 0.25;
@@ -102,7 +101,7 @@ export default function MisterPastos(props: any) {
   })
   return (
     <Suspense fallback={null}>
-      <RigidBody name="Grass" ref={boyBody} position={[0, 12, 24]} rotation={[0, 3.1415926, 0]} linearDamping={1}>
+      <RigidBody name="MisterPastos" ref={boyBody} position={[0, 12, 32]} rotation={[0, 3.1415926, 0]} linearDamping={1} restitution={-2}>
         <group ref={group} {...props} dispose={null}>
           <group name="Model">
             <group name="Armature">

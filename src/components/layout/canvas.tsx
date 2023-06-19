@@ -5,7 +5,7 @@ import { OrbitControls, Preload, Stats } from "@react-three/drei";
 
 const Controls = () => {
   const control = useRef(null);
-  return <OrbitControls ref={control} />;
+  return <OrbitControls enablePan={false} enableZoom={false} enableRotate={false} ref={control} />;
 };
 const CanvasWrapper = ({ children }) => {
   return (
@@ -20,7 +20,6 @@ const CanvasWrapper = ({ children }) => {
           top: 0,
         }}
       >
-        <Stats />
         <Controls />
         <Preload all />
         {children}
