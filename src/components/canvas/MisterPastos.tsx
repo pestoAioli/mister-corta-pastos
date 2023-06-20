@@ -136,12 +136,12 @@ export default function MisterPastos(props: any) {
           fontSize: 50
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ marginBottom: -6 }} onTouchStart={() => setMobileForward(true)} onTouchEnd={() => setMobileForward(false)}>⬆️</div>
+            <button style={{ marginBottom: -6, border: 'none', background: 'none', padding: 0 }} onTouchStart={() => setMobileForward(true)} onTouchEnd={() => setMobileForward(false)}>⬆️</button>
           </div>
           <div style={{ display: 'flex' }}>
-            <div onTouchStart={() => setMobileLeft(true)} onTouchEnd={() => setMobileLeft(false)} >⬅️</div>
-            <div onTouchStart={() => setMobileBackward(true)} onTouchEnd={() => setMobileBackward(false)} >⬇️</div>
-            <div onTouchStart={() => setMobileRight(true)} onTouchEnd={() => setMobileRight(false)} >➡️</div>
+            <button style={{ border: 'none', background: 'none', padding: 0 }} onTouchStart={() => setMobileLeft(true)} onTouchEnd={() => setMobileLeft(false)} >⬅️</button>
+            <button style={{ border: 'none', background: 'none', padding: 0 }} onTouchStart={() => setMobileBackward(true)} onTouchEnd={() => setMobileBackward(false)} >⬇️</button>
+            <button style={{ border: 'none', background: 'none', padding: 0 }} onTouchStart={() => setMobileRight(true)} onTouchEnd={() => setMobileRight(false)} >➡️</button>
           </div>
         </Html>
         : null}
