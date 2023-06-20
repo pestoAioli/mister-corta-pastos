@@ -102,9 +102,9 @@ const R3F = () => {
       {gameOfLife ?
         <Html transform position={[-25.4, -43, -20]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .4, 0]} >
           <div style={{ display: 'flex' }}>
-            <p onClick={() => setGameOfLife(false)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} >❌</p>
+            <p style={{ fontSize: 24 }} onClick={() => setGameOfLife(false)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} >❌</p>
             {/*eslint-disable-next-line react/no-unescaped-entities*/}
-            <h1 style={{ color: 'white' }}>Here's a game of life visualizer I made :)</h1>
+            <h1 style={{ color: 'white', marginLeft: 12 }}>Here's a game of life visualizer I made :)</h1>
           </div>
           <iframe src="https://g-0-l.vercel.app" />
         </Html>
@@ -259,7 +259,7 @@ const R3F = () => {
               />
             </RigidBody>
             : null}
-          <Ball position={[3, 0, 28]} />
+          <Ball position={[3, 0, -4]} />
         </Physics>
         <EffectOne />
       </KeyboardControls>
