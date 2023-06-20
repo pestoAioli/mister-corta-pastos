@@ -1,4 +1,4 @@
-import { useGLTF, useAnimations } from "@react-three/drei";
+import { useGLTF, useAnimations, Html } from "@react-three/drei";
 import { Suspense, useRef, useState } from "react";
 //@ts-ignore
 import { useKeyboardControls } from '@react-three/drei';
@@ -9,6 +9,7 @@ import { GLTF } from "three-stdlib";
 import { RigidBody, RapierRigidBody } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import Loading from "./Loading";
+import { isMobile } from "react-device-detect";
 
 type ActionName = "0StillPose" | "1Walking";
 
@@ -43,6 +44,10 @@ export default function MisterPastos(props: any) {
   const [_subscribeKeys, getKeys] = useKeyboardControls();
   const [smoothedCameraPosition, _] = useState(() => new THREE.Vector3())
   const [smoothedCameraTarget, __] = useState(() => new THREE.Vector3())
+  const [mobileForward, setMobileForward] = useState(false);
+  const [mobileBackward, setMobileBackward] = useState(false);
+  const [mobileLeft, setMobileLeft] = useState(false);
+  const [mobileRight, setMobileRight] = useState(false);
 
   useFrame((state, delta) => {
     const { forward, backward, leftward, rightward } = getKeys()
@@ -56,32 +61,36 @@ export default function MisterPastos(props: any) {
       actions["1Walking"]?.stop();
     }
 
-    if (forward) {
+    if (forward || mobileForward) {
 
       impulse.z -= impulseStrength
       isMoving.current = true;
     }
 
-    if (rightward) {
+    if (rightward || mobileRight) {
 
       impulse.x += impulseStrength
       isMoving.current = true;
     }
 
-    if (backward) {
+    if (backward || mobileBackward) {
 
       impulse.z += impulseStrength
       isMoving.current = true;
     }
 
-    if (leftward) {
+    if (leftward || mobileLeft) {
 
       impulse.x -= impulseStrength
       isMoving.current = true;
     }
-    if (!leftward && !rightward && !forward && !backward && isMoving.current) {
+    if (!isMobile) {
+      if (!leftward && !rightward && !forward && !backward && isMoving.current) {
+        isMoving.current = false;
+      }
+    }
+    if (!mobileLeft && !mobileRight && !mobileForward && !mobileBackward && isMoving.current && !leftward && !rightward && !forward && !backward) {
       isMoving.current = false;
-
     }
     boyBody.current?.applyImpulse(impulse, true)
 
@@ -121,6 +130,21 @@ export default function MisterPastos(props: any) {
           </group>
         </group>
       </RigidBody>
+      {isMobile ?
+        <Html style={{
+          marginTop: 200,
+          fontSize: 50
+        }}>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ marginBottom: -6 }} onTouchStart={() => setMobileForward(true)} onTouchEnd={() => setMobileForward(false)}>⬆️</div>
+          </div>
+          <div style={{ display: 'flex' }}>
+            <div onTouchStart={() => setMobileLeft(true)} onTouchEnd={() => setMobileLeft(false)} >⬅️</div>
+            <div onTouchStart={() => setMobileBackward(true)} onTouchEnd={() => setMobileBackward(false)} >⬇️</div>
+            <div onTouchStart={() => setMobileRight(true)} onTouchEnd={() => setMobileRight(false)} >➡️</div>
+          </div>
+        </Html>
+        : null}
     </Suspense>
   );
 }

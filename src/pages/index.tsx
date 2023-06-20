@@ -38,8 +38,6 @@ const DOM = () => {
 
 // Canvas/R3F components here
 const R3F = () => {
-
-  const size = useWindowSize();
   const [hovered, setHovered] = useState(false)
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
