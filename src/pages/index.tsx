@@ -129,7 +129,7 @@ const R3F = () => {
           {grassLooksNice && !moveOn ?
             <Suspense fallback={null}>
               <RigidBody>
-                <Text3D scale={hovered ? 1.2 : 1} castShadow size={2} height={1} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
                   Learn more :D
