@@ -10,8 +10,8 @@ type HeaderProps = {
   coverImage?: string;
 };
 
-const Header = ({ title, coverImage }: HeaderProps) => {
-  title = "Ricky wuz here 🤓"
+const Header = ({ title }: HeaderProps) => {
+  title = "Ricky's Portfolio🤓"
   return (
     <>
       <Head>
