@@ -26,9 +26,9 @@ const R3F = () => {
       <Lights movedOn={false} />
       <Html center style={{ maxHeight: size.height, width: size.width < 700 ? size.width - 20 : size.width / 2, overflowY: 'scroll' }}>
         <h1>This is pretty lengthy, if you want the short, professional, version, here you go:</h1>
-        <p style={{
-        }}>Artist and Software Engineer. I enjoy working across the full stack and I am passionate about crafting maintainable
-          software based solutions which enrich the day to day lives of their users. Prior to becoming an engineer, I wore many hats,
+        {/*eslint-disable-next-line react/no-unescaped-entities*/}
+        <p>I'm a Full Stack Software Engineer with a background in the Fine Art Industry. I really enjoy working across the full stack and I'm passionate about crafting maintainable
+          software based solutions that aim to enrich the day to day lives of their users. Prior to becoming an engineer, I wore many hats,
           including, but not limited to: bartender, barista, painter, plumber, weaver, landscaper, teacher.</p>
         <h2>Beefy version:</h2>
         <p>After dropping out of Art school at age 19, I met an artist named Claudy Jongstra while I was working at a restaurant down the street from the SFMOMA. After ignoring my work for 30 minutes and chatting with her, she invited me to come work for her at her Farm and Studio in Friesland, The Netherlands.
