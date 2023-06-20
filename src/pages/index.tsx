@@ -129,10 +129,10 @@ const R3F = () => {
           {grassLooksNice && !moveOn ?
             <Suspense fallback={null}>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={3} height={1} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                  onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
-                  Learn more :D
+                  onClick={() => setMoveOn(true)} position={[-10, 10, -8]} >
+                  Learn more...
                   <meshStandardMaterial color="orange" />
                 </Text3D>
               </RigidBody>
@@ -154,7 +154,7 @@ const R3F = () => {
           {moveOn ?
             <Suspense fallback={null}>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={3} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => window.open("https://ezequiel4.online/RRMC4.pdf", "_blank")} position={[-1, -43, 0]}>
                   resume
@@ -162,7 +162,7 @@ const R3F = () => {
                 </Text3D>
               </RigidBody>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={3} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => window.open("https://ezequiel4.online/two", "_blank")} position={[-3, -43, 10]}>
                   about me
