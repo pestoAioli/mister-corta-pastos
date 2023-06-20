@@ -45,7 +45,7 @@ const R3F = () => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
   }, [hovered])
   const [gameOfLife, setGameOfLife] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+
   const cutGrass = useRef(0);
   const [grassLooksNice, setGrassLooksNice] = useState(false);
   const [moveOn, setMoveOn] = useState(false);
@@ -76,26 +76,6 @@ const R3F = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      {!isLoaded ?
-        <Html center>
-          <div style={{
-            width: size.width ? size.width : '100%',
-            height: size.height ? size.height : '100%',
-            display: 'flex',
-            backgroundColor: 'black',
-            justifyContent: 'space-around',
-            alignItems: 'center'
-          }}>
-            <h2 style={{
-              border: '3px solid white',
-              padding: '12px 24px',
-              color: 'white',
-              cursor: 'pointer'
-            }}
-              onClick={() => setIsLoaded(true)}>enter</h2>
-          </div>
-        </Html>
-        : null}
       {!moveOn ?
         <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
         : null}
