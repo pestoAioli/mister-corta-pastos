@@ -100,7 +100,7 @@ const R3F = () => {
         <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
         : null}
       {gameOfLife ?
-        <Html transform position={[-25, -43, -17]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .3, 0]} >
+        <Html transform position={[-25.4, -43, -17]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .3, 0]} >
           <div style={{ display: 'flex' }}>
             <p onClick={() => setGameOfLife(false)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} >❌</p>
             {/*eslint-disable-next-line react/no-unescaped-entities*/}
