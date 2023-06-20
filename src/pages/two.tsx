@@ -24,7 +24,7 @@ const R3F = () => {
   return (
     <>
       <Lights movedOn={false} />
-      <Html center style={{ maxHeight: size.height, width: size.width - 20, overflowY: 'scroll' }}>
+      <Html center style={{ maxHeight: size.height, width: size.width < 700 ? size.width - 20 : size.width / 2, overflowY: 'scroll' }}>
         <h1>This is pretty lengthy, if you want the short, professional, version, here you go:</h1>
         <p style={{
         }}>Artist and Software Engineer. I enjoy working across the full stack and I am passionate about crafting maintainable
