@@ -27,7 +27,7 @@ const R3F = () => {
       <Html center style={{ maxHeight: size.height, width: size.width < 700 ? size.width - 20 : size.width / 2, overflowY: 'scroll' }}>
         <h1>This is pretty lengthy, if you want the short, professional, version, here you go:</h1>
         {/*eslint-disable-next-line react/no-unescaped-entities*/}
-        <p>I'm a Full Stack Software Engineer with a background in the Fine Art Industry. I really enjoy working across the full stack and I'm passionate about crafting maintainable
+        <p>I'm a Full Stack Software Engineer with a background in Fine Arts. I really enjoy working across the full stack and I'm passionate about crafting maintainable
           software based solutions that aim to enrich the day to day lives of their users. Prior to becoming an engineer, I wore many hats,
           including, but not limited to: bartender, barista, painter, plumber, weaver, landscaper, teacher.</p>
         <h2>Beefy version:</h2>
