@@ -8,6 +8,7 @@ import { Perf } from "r3f-perf";
 import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
 import useWindowSize from '@/helpers/useWindowSize';
+import { isMobile } from "react-device-detect";
 
 const MisterPastos = dynamic(() => import("@/components/canvas/MisterPastos"), {
   ssr: false,
@@ -54,7 +55,7 @@ const R3F = () => {
     adjustCoords.z = Math.floor(position.z)
     hereHeIs.current = adjustCoords;
   }
-  const information = "Hi! Welcome to my portfolio. My name is Ricardo, but my friends call me Ricky. Use WASD(or your keyboard equivalent) to move around, and if you wish to learn more about my experience as a human, artist, and software engineer, please mow at least 20% of the lawn. Thank you for visiting! Have a wonderful day!"
+  const information = "Hi! My name is Ricardo, but my friends call me Ricky. Welcome to my portfolio! Use WASD to move around and if you wish to learn more about my experience as a human, artist, and software engineer, please mow at least 20% of the lawn. Thank you for visiting! Have a wonderful day!"
 
   useFrame((state) => {
     // console.log(state.scene.children)
@@ -109,8 +110,8 @@ const R3F = () => {
               <RigidBody>
                 <Text3D castShadow size={3} height={1} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                  onClick={() => setMoveOn(true)} position={[-10, 10, -8]} >
-                  Learn more...
+                  onClick={() => setMoveOn(true)} position={[-10, 10, -8]}>
+                  Click me!
                   <meshStandardMaterial color="orange" />
                 </Text3D>
               </RigidBody>
@@ -158,7 +159,7 @@ const R3F = () => {
               <RigidBody>
                 <Text3D castShadow size={2.2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                  onClick={() => setGameOfLife(true)} position={[-9, -42, -10]}>
+                  onClick={() => isMobile ? window.open("https://github.com/pestoAioli", "_blank") : setGameOfLife(true)} position={[-9, -42, -10]}>
                   game of life
                   <meshStandardMaterial color="orange" />
                 </Text3D>
@@ -240,6 +241,7 @@ const R3F = () => {
           <Ball position={[3, 0, -4]} />
         </Physics>
         <EffectOne />
+
       </KeyboardControls>
     </Suspense>
   );
