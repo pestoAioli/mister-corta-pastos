@@ -100,7 +100,7 @@ const R3F = () => {
         <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
         : null}
       {gameOfLife ?
-        <Html transform position={[-25.4, -43, -17]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .3, 0]} >
+        <Html transform position={[-25.4, -43, -20]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .4, 0]} >
           <div style={{ display: 'flex' }}>
             <p onClick={() => setGameOfLife(false)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} >❌</p>
             {/*eslint-disable-next-line react/no-unescaped-entities*/}
@@ -172,7 +172,7 @@ const R3F = () => {
               <RigidBody>
                 <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                  onClick={() => setGameOfLife(true)} position={[-9, -42, 5]}>
+                  onClick={() => setGameOfLife(true)} position={[-9, -42, -10]}>
                   game of life
                   <meshStandardMaterial color="orange" />
                 </Text3D>
@@ -180,7 +180,7 @@ const R3F = () => {
               <RigidBody>
                 <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                  onClick={() => window.open("https://curbs-your-enthusiasm.vercel.app", "_blank")} position={[-3, -43, -10]}>
+                  onClick={() => window.open("https://curbs-your-enthusiasm.vercel.app", "_blank")} position={[-3, -43, 5]}>
                   curbs
                   <meshStandardMaterial color="orange" />
                 </Text3D>
