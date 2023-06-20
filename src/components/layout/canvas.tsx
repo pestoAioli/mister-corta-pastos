@@ -16,7 +16,7 @@ const CanvasWrapper = ({ children }) => {
         // @ts-ignore
         mode="concurrent"
         style={{
-          position: "absolute",
+
           top: 0,
         }}
       >
