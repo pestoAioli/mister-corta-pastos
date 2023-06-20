@@ -44,7 +44,7 @@ const R3F = () => {
   useEffect(() => {
     document.body.style.cursor = hovered ? 'pointer' : 'auto'
   }, [hovered])
-  const [summary, setSummary] = useState(false);
+  const [gameOfLife, setGameOfLife] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const cutGrass = useRef(0);
   const [grassLooksNice, setGrassLooksNice] = useState(false);
@@ -96,7 +96,19 @@ const R3F = () => {
           </div>
         </Html>
         : null}
-      <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
+      {!moveOn ?
+        <Text position={[8, 6.4, 20]} fontSize={0.6} anchorX="right" maxWidth={15}>{information}</Text>
+        : null}
+      {gameOfLife ?
+        <Html transform position={[-25, -43, -17]} distanceFactor={6} wrapperClass="justAGame" rotation={[-0.2, .3, 0]} >
+          <div style={{ display: 'flex' }}>
+            <p onClick={() => setGameOfLife(false)} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} >❌</p>
+            {/*eslint-disable-next-line react/no-unescaped-entities*/}
+            <h1 style={{ color: 'white' }}>Here's a game of life visualizer I made :)</h1>
+          </div>
+          <iframe src="https://g-0-l.vercel.app" />
+        </Html>
+        : null}
       <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
       <KeyboardControls map={[
         { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
@@ -117,7 +129,7 @@ const R3F = () => {
           {grassLooksNice && !moveOn ?
             <Suspense fallback={null}>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} font={'/new-york-fixed.json'}
+                <Text3D scale={hovered ? 1.2 : 1} castShadow size={2} height={1} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => setMoveOn(true)} position={[-8, 10, -8]} >
                   Learn more :D
@@ -154,6 +166,30 @@ const R3F = () => {
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => window.open("https://ezequiel4.online/two", "_blank")} position={[-3, -43, 10]}>
                   about me
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => setGameOfLife(true)} position={[-9, -42, 5]}>
+                  game of life
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => window.open("https://curbs-your-enthusiasm.vercel.app", "_blank")} position={[-3, -43, -10]}>
+                  curbs
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+              <RigidBody>
+                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => window.open("https://www.glitter-pilled.vercel.app", "_blank")} position={[-9, -43, 15]}>
+                  last 50
                   <meshStandardMaterial color="orange" />
                 </Text3D>
               </RigidBody>

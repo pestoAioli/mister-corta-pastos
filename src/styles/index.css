@@ -390,3 +390,10 @@ template {
     padding: 0;
     overflow: hidden;
   }
+
+  .justAGame iframe {
+    background-color: white;
+    border: none;
+    height: 1024px;
+    width: 1024px;
+  }
