@@ -170,7 +170,15 @@ const R3F = () => {
                 </Text3D>
               </RigidBody>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={2.2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                  onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
+                  onClick={() => window.open("https://github.com/pestoAioli", "_blank")} position={[-3, -43, 20]}>
+                  GitHub
+                  <meshStandardMaterial color="orange" />
+                </Text3D>
+              </RigidBody>
+              <RigidBody>
+                <Text3D castShadow size={2.2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => setGameOfLife(true)} position={[-9, -42, -10]}>
                   game of life
@@ -186,7 +194,7 @@ const R3F = () => {
                 </Text3D>
               </RigidBody>
               <RigidBody>
-                <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
+                <Text3D castShadow size={1.8} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                   onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
                   onClick={() => window.open("https://www.glitter-pilled.vercel.app", "_blank")} position={[-9, -43, 15]}>
                   last 50
