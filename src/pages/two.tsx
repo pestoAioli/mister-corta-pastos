@@ -23,7 +23,7 @@ const R3F = () => {
   );
   return (
     <>
-      <Lights movedOn={false} />
+      <Lights />
       <Html center style={{ maxHeight: size.height, width: size.width < 700 ? size.width - 20 : size.width / 2, overflowY: 'scroll' }}>
         <h1>This is pretty lengthy, if you want the short, professional, version, here you go:</h1>
         {/*eslint-disable-next-line react/no-unescaped-entities*/}
@@ -52,7 +52,7 @@ const R3F = () => {
           I'm happy to answer any questions or provide (glowing) references from my previous job as an Engineer upon request. Thanks for reading this far, and I hope you were able to gain further insight into who I am.
         </p>
       </Html>
-      <mesh ref={mesh} position={[0, -2, 0]} castShadow>
+      <mesh ref={mesh} position={[-10, -2, -12]} castShadow>
         <boxGeometry />
         <meshStandardMaterial color="darksalmon" />
       </mesh>
