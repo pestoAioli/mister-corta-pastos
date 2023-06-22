@@ -361,9 +361,6 @@ template {
     overflow: hidden;
   }
 
-  .justAGame iframe {
-    background-color: white;
-    border: none;
-    height: 1024px;
-    width: 1024px;
+  .instructions {
+    top: 10
   }

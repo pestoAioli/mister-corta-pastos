@@ -110,7 +110,7 @@ export default function MisterPastos(props: any) {
   })
   return (
     <Suspense fallback={null}>
-      <RigidBody name="MisterPastos" ref={boyBody} position={[0, 12, 32]} rotation={[0, 3.1415926, 0]} linearDamping={1} restitution={-2}>
+      <RigidBody name="MisterPastos" ref={boyBody} position={[0, 0, 22]} rotation={[0, 3.1415926, 0]} linearDamping={1} restitution={-2}>
         <group ref={group} {...props} dispose={null}>
           <group name="Model">
             <group name="Armature">

@@ -6,12 +6,10 @@ export default function EffectOne() {
       <EffectComposer>
         <Bloom
           luminanceThreshold={0.4}
-          luminanceSmoothing={0.9}
-          height={600}
+          luminanceSmoothing={1.1}
+          height={300}
           opacity={3}
         />
-        <Noise opacity={0.1} />
-        <Vignette eskil={false} offset={0.1} darkness={1.1} />
       </EffectComposer>
     </>
   )
