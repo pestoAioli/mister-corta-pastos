@@ -38,18 +38,18 @@ const R3F = () => {
           I stayed with Claudy until the day my Schengen Visa expired, heavily considering whether or not I should stay in The Netherlands indefinitely(and illegally.) I decided I didn't want to risk not being able to return to Europe for 10 years and made the long, and depressing trip home.
           {/*eslint-disable-next-line react/no-unescaped-entities*/}
           After staying some time with my parents in Sonoma County, still making artwork for Claudy and shipping them back to The Netherlands, I went back to San Francisco, living in various strange places including a basement, a mansion and a 37 foot long sailboat. After a couple years I followed a couple of my best friends to NYC where I started a band, worked at fancy restaurants, and fell in love, all while painting and trying to make a living doing so.
-          A huge tragedy befell my family and I returned to California to be with them, when Covid-19 happened. It was then, in the midst of this awful situation that I finally asked myself if I was happy with the path I was on. The answer was no. I lived for my art, and trying to monetize it became dark and stripped it of its beauty and therapy for me. One of my best friends and now mentor, Nico, had been trying to convince me to learn to code since New York, but since
+          A huge tragedy befell my family and I returned to California to be with them, when Covid-19 happened. It was then, in the midst of this situation that I finally asked myself if I was happy with the path I was on. The answer was no. I lived for my art, and trying to monetize it became dark and stripped it of its beauty and therapy for me. One of my best friends and now mentor, Nico, had been trying to convince me to learn to code since New York, but since
           {/*eslint-disable-next-line react/no-unescaped-entities*/}
-          I "wasn't ready to give up on my dream"(the dream in question was more of an illusion)
+          I "wasn't ready to give up on my dream"( quotes because the dream in question was more of an illusion)
           {/*eslint-disable-next-line react/no-unescaped-entities*/}
           quite yet, I paid little attention to him. But alas, considering the current circumstances, I decided to give it a try. I quickly became enamored with coding and dedicated all my free time towards trying to unravel the mystery that was 'programming'.
           After a year of going at it alone, I decided I needed to see what it was like to write code in a collaborative setting, assuming I would love it even more and learn in a way that was more appropriate for me. After asking around, and some convincing from Nico, I enrolled in Codeworks, a Bootcamp that seemed like an environment where I would be around other motivated individuals with interesting backgrounds, and I was right in both assumptions.
           We spent 12 hours a day, 6 days a week together in a room learning about algorithms, frameworks, networking, databases, and sharing our thoughts with one another.
           It was incredibly enriching and I made some of the greatest friends I will ever have during that time.
           {/*eslint-disable-next-line react/no-unescaped-entities*/}
-          Since then, I was hired as a Full Stack Engineer at Retrium, and moved back to San Francisco to be close to my friends. I was laid off from Retrium due to a "reduction in force" aka the economy, and I'm now seeking a new role.
+          Since then, I haven't stopped learning and building. I was hired as a Full Stack Engineer at Retrium, and moved back to San Francisco to be close to my friends. Unfortunately, after about a year, I was laid off from Retrium due to a "reduction in force"(they lost a bunch of money), and I'm now seeking a new role.
           {/*eslint-disable-next-line react/no-unescaped-entities*/}
-          I'm happy to answer any questions or provide (glowing) references from my previous job as an Engineer upon request. Thanks for reading this far, and I hope you were able to gain further insight into who I am.
+          I'm happy to answer any questions or provide (glowing) references upon request. If you read this far, thank you, and I hope you were able to gain further insight into who I am.
         </p>
       </Html>
       <mesh ref={mesh} position={[-10, -2, -12]} castShadow>
