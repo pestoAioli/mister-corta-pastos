@@ -43,7 +43,7 @@ const DOM = () => {
   return (
     <div style={{ marginLeft: 4, transition: '3s', opacity: hello ? 1 : 0 }}>
       {/*eslint-disable-next-line react/no-unescaped-entities*/}
-      <h1>Welcome to Ricky's portfolio!</h1>
+      <h1>Welcome to Ricardo's portfolio!</h1>
       <p>· WASD to move around </p>
       <p>· Click 3D text to learn more </p>
     </div>
