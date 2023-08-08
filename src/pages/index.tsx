@@ -116,7 +116,7 @@ const R3F = () => {
             <RigidBody>
               <Text3D castShadow size={2.2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                 onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                onClick={() => window.open("https://dreaming-of-u.com/dreamfeed", "_blank")} position={[-3, 12, -10]}>
+                onClick={() => window.open("https://dreaming-of-u.com/dreamfeed", "_blank")} position={[-6, 12, -10]}>
                 dreaming of u
                 <meshStandardMaterial color="orange" />
               </Text3D>
@@ -124,7 +124,7 @@ const R3F = () => {
             <RigidBody>
               <Text3D castShadow size={2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                 onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                onClick={() => window.open("https://curbs-your-enthusiasm.vercel.app", "_blank")} position={[-9, 12, -7]}>
+                onClick={() => window.open("https://curbs-your-enthusiasm.vercel.app", "_blank")} position={[-11, 12, -7]}>
                 curbs
                 <meshStandardMaterial color="orange" />
               </Text3D>
