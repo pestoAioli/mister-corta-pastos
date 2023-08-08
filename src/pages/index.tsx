@@ -116,8 +116,8 @@ const R3F = () => {
             <RigidBody>
               <Text3D castShadow size={2.2} height={1} bevelThickness={10} font={'/new-york-fixed.json'}
                 onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}
-                onClick={() => window.open("https://g-0-l.vercel.app", "_blank")} position={[-3, 12, -10]}>
-                game of life
+                onClick={() => window.open("https://dreaming-of-u.com/dreamfeed", "_blank")} position={[-3, 12, -10]}>
+                dreaming of u
                 <meshStandardMaterial color="orange" />
               </Text3D>
             </RigidBody>
